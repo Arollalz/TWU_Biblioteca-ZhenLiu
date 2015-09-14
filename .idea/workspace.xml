@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be18f437-f8b0-454b-af57-53c82eb106f8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/BibliotecaAppTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BibliotecaAppTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/library/BookStorage.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/library/BookStorage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/BookStorageTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BookStorageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/customer/Customer.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/customer/Customer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/CustomerTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/CustomerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/handler/ListBooksHandler.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/handler/ListBooksHandler.java" />
-    </list>
+    <list default="true" id="be18f437-f8b0-454b-af57-53c82eb106f8" name="Default" comment="" />
     <ignored path="TWU_Biblioteca-ZhenLiu.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
