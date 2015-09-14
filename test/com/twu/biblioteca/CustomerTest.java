@@ -74,16 +74,14 @@ public class CustomerTest {
         assertEquals("That book is not available.", customer.checkOut(book));
     }
 
-
     @Test
     public void should05AppearInBookListWhenABookBeReturnedByACustomer() throws Exception {
         //GIVEN
         Customer customer = new Customer();
 
         //WHEN
-        customer.returnBook(book);
-
         //THEN
+        assertEquals("Thank you for returning the book.", customer.returnBook(book));
         assertTrue(BookStorage.bookList.contains(book));
     }
 

@@ -27,7 +27,8 @@ public class Customer {
         }
     }
 
-    public void returnBook(Book book) {
+    public String returnBook(Book book) {
         BookStorage.bookList.add(book);
+        return "Thank you for returning the book.";
     }
 }
