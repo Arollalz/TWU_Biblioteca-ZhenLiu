@@ -26,7 +26,7 @@ public class CustomerTest {
     public void shouldSeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
         //GIVEN
         Customer customer = new Customer();
-        LinkedList<Book> bookListInBookStorage = BookStorage.booklist;
+        LinkedList<Book> bookListInBookStorage = BookStorage.bookList;
 
         //WHEN
         LinkedList<Book> bookList = customer.seeListOfAllBooks();
@@ -41,9 +41,22 @@ public class CustomerTest {
         Customer customer = new Customer();
 
         //WHEN
-        LinkedList<Book> bookLinkedList = customer.selectMenuOption(MainMenuOption.LISTBOOKS);
+        BibliotecaApp.handleSelectedMenuOptionRequest(MainMenuOptionRequestType.listBooks);
 
         //THEN
-        assertEquals(bookLinkedList, BookStorage.booklist);
+        assertEquals(MainMenu.getContent(), BookStorage.bookList);
     }
+
+//    @Test
+//    public void shouldBeNotifiedSelectingAValidOptionWhenACutomerSelectAValidMenuOption() throws Exception {
+//        //GIVEN
+//        Customer customer = new Customer();
+//
+//        //WHEN
+//        customer.handleSelectedMenuOptionRequest(MainMenuOptionRequestType.validOption);
+//
+//        //THEN
+//        assertEquals(MainMenu.getValidOptionSelectedMessage(),"");
+//
+//    }
 }

@@ -12,10 +12,6 @@ public class Customer {
     }
 
     public LinkedList<Book> seeListOfAllBooks() {
-        return BookStorage.booklist;
-    }
-
-    public LinkedList<Book> selectMenuOption(MainMenuOption listbooks) {
-        return BookStorage.booklist;
+        return BookStorage.bookList;
     }
 }

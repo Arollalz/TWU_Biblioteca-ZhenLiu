@@ -7,15 +7,10 @@ import java.util.LinkedList;
  * Created by zhenliu on 9/14/15.
  */
 public class BookStorage {
-    public static LinkedList<Book> booklist = new LinkedList<Book>() ;
-
-    public BookStorage() {
-        initBookList();
-    }
-    private static void initBookList(){
+    public static LinkedList<Book> bookList = new LinkedList<Book>() {{
         {
-            booklist.add(new Book("book1","author1", Calendar.getInstance()));
-            booklist.add(new Book("book2","author2",Calendar.getInstance()));
+            add(new Book("book1", "author1", Calendar.getInstance()));
+            add(new Book("book2", "author2", Calendar.getInstance()));
         }
-    }
+    }};
 }
