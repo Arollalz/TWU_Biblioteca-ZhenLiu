@@ -12,6 +12,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class BookStorageTest {
     @Test
     public void shouldHaveBooksInBookStorage() {
-        assert(BookStorage.bookList.size() > 0);
+        assert(BookStorage.allBookList.size() > 0);
     }
 }

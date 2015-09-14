@@ -9,6 +9,6 @@ import com.twu.biblioteca.library.MainMenu;
 public class ListBooksHandler implements RequestHandler {
     @Override
     public void handle() {
-        MainMenu.setContent(BookStorage.bookList);
+        MainMenu.setContent(BookStorage.allBookList);
     }
 }

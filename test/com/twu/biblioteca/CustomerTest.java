@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.customer.Customer;
 import com.twu.biblioteca.library.Book;
 import com.twu.biblioteca.library.BookStorage;
-import org.hamcrest.core.IsAnything;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -24,11 +23,11 @@ public class CustomerTest {
     public Book book;
     @Before
     public void setUp() throws Exception {
-        book = BookStorage.bookList.get(0);
+        book = BookStorage.allBookList.get(0);
     }
 
     @Test
-    public void should01GetWelcomeMessageWhenACustomerStartBibliotecaApp(){
+    public void should1GetWelcomeMessageWhenACustomerStartBibliotecaApp(){
         //GIVEN
         Customer customer = new Customer();
 
@@ -40,10 +39,10 @@ public class CustomerTest {
     }
 
     @Test
-    public void should02SeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
+    public void should2SeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
         //GIVEN
         Customer customer = new Customer();
-        LinkedList<Book> bookListInBookStorage = BookStorage.bookList;
+        LinkedList<Book> bookListInBookStorage = BookStorage.allBookList;
 
         //WHEN
         LinkedList<Book> bookList = customer.seeListOfAllBooks();
@@ -53,36 +52,51 @@ public class CustomerTest {
     }
 
     @Test
-    public void should03NotAppearInBookListAndGiveAMessageWhenABookBeCheckedByACustomer() throws Exception {
+    public void should3NotAppearInBookListAndGiveAMessageWhenABookBeCheckedByACustomer() throws Exception {
         //GIVEN
         Customer customer = new Customer();
 
         //WHEN
         //THEN
-        assertEquals("Thank you! Enjoy the book.",customer.checkOut(book));
-        assertFalse(BookStorage.bookList.contains(book));
+        assertEquals("Thank you! Enjoy the book.", customer.checkOut(book));
+        assertFalse(BookStorage.allBookList.contains(book));
+        assertTrue(BookStorage.lentBookList.contains(book));
     }
 
     @Test
-    public void should04CheckOutUnsuccessfullyAndGiveAMessageWhenABookIsNotAvailable() throws Exception {
+    public void should4CheckOutUnsuccessfullyAndGiveAMessageWhenABookIsNotAvailable() throws Exception {
         //GIVEN
         Customer customer = new Customer();
         Book book = new Book("book3","author3", Calendar.getInstance());
 
         //WHEN
         //THEN
+        assertFalse(BookStorage.allBookList.contains(book));
         assertEquals("That book is not available.", customer.checkOut(book));
     }
 
     @Test
-    public void should05AppearInBookListWhenABookBeReturnedByACustomer() throws Exception {
+    public void should5AppearInBookListAndGiveAMessageWhenABookBeReturnedByACustomer() throws Exception {
         //GIVEN
         Customer customer = new Customer();
 
         //WHEN
+        customer.checkOut(book);
         //THEN
         assertEquals("Thank you for returning the book.", customer.returnBook(book));
-        assertTrue(BookStorage.bookList.contains(book));
+        assertTrue(BookStorage.allBookList.contains(book));
+    }
+
+
+    @Test
+    public void should6ReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibray() throws Exception {
+        //GIVEN
+        Customer customer = new Customer();
+        Book book = new Book("book3","author3", Calendar.getInstance());
+
+        //WHEN
+        //THEN
+        assertEquals("That is not a valid book to return.", customer.returnBook(book));
     }
 
 }

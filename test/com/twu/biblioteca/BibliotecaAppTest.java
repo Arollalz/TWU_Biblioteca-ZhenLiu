@@ -39,7 +39,7 @@ public class BibliotecaAppTest {
         BibliotecaApp.handleSelectedMenuOptionRequest(customerRequest);
 
         //THEN
-        assertEquals(MainMenu.getContent(), BookStorage.bookList);
+        assertEquals(MainMenu.getContent(), BookStorage.allBookList);
     }
 
 
