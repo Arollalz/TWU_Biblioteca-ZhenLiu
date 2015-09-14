@@ -9,7 +9,14 @@ import static org.junit.Assert.*;
  */
 public class BibliotecaAppTest {
     @Test
-    public void () throws Exception {
+    public void shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
+        //GIVEN
+        CustomerRequest customerRequest = new CustomerRequest(new Customer(), MainMenuOptionRequestType.listBooks);
 
+        //WHEN
+        BibliotecaApp.handleSelectedMenuOptionRequest(customerRequest);
+
+        //THEN
+        assertEquals(MainMenu.getContent(), BookStorage.bookList);
     }
 }

@@ -35,17 +35,7 @@ public class CustomerTest {
         assertEquals(bookList, bookListInBookStorage);
     }
 
-    @Test
-    public void shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
-        //GIVEN
-        Customer customer = new Customer();
 
-        //WHEN
-        BibliotecaApp.handleSelectedMenuOptionRequest(MainMenuOptionRequestType.listBooks);
-
-        //THEN
-        assertEquals(MainMenu.getContent(), BookStorage.bookList);
-    }
 
 //    @Test
 //    public void shouldBeNotifiedSelectingAValidOptionWhenACutomerSelectAValidMenuOption() throws Exception {
