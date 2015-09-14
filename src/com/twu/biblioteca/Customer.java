@@ -15,7 +15,7 @@ public class Customer {
         return BookStorage.booklist;
     }
 
-    public LinkedList<Book> selectMenuOption(MenuOption listbooks) {
+    public LinkedList<Book> selectMenuOption(MainMenuOption listbooks) {
         return BookStorage.booklist;
     }
 }

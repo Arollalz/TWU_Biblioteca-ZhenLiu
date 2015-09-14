@@ -41,7 +41,7 @@ public class CustomerTest {
         Customer customer = new Customer();
 
         //WHEN
-        LinkedList<Book> bookLinkedList = customer.selectMenuOption(MenuOption.LISTBOOKS);
+        LinkedList<Book> bookLinkedList = customer.selectMenuOption(MainMenuOption.LISTBOOKS);
 
         //THEN
         assertEquals(bookLinkedList, BookStorage.booklist);
