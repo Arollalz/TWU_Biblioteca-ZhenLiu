@@ -18,7 +18,11 @@ public class Customer {
         return BookStorage.bookList;
     }
 
-    public void checkOut(Book book) {
+    public String checkOut(Book book) {
+        if (!BookStorage.bookList.contains(book)){
+            return "That book is not available.";
+        }
         BookStorage.bookList.remove(book);
+        return "Thank you! Enjoy the book.";
     }
 }
