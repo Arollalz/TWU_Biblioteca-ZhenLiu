@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 /**
  * Created by zhenliu on 9/14/15.
  */
@@ -36,5 +38,18 @@ public class CustomerTest {
 
         //THEN
         assertEquals(bookList, bookListInBookStorage);
+    }
+
+    @Test
+    public void shouldNotAppearInBookListWhenABookBeCheckedByACustomer() throws Exception {
+        //GIVEN
+        Customer customer = new Customer();
+        Book book = BookStorage.bookList.get(0);
+
+        //WHEN
+        customer.checkOut(book);
+
+        //THEN
+        assertFalse(BookStorage.bookList.contains(book));
     }
 }
