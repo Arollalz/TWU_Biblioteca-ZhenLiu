@@ -10,7 +10,7 @@ import java.util.HashMap;
 public final class Handlers {
     private static final HashMap<MainMenuOptionRequestType, RequestHandler> optionRequestHandlerMap = new HashMap<MainMenuOptionRequestType, RequestHandler>(){{
         put(MainMenuOptionRequestType.listBooks, new ListBooksHandler());
-        put(MainMenuOptionRequestType.validOption, new ValidOptionHandler());
+        put(MainMenuOptionRequestType.validOption, new InvalidOptionHandler());
     }};
 
     public static RequestHandler findRequestHandler(MainMenuOptionRequestType mainMenuOptionRequestType) {

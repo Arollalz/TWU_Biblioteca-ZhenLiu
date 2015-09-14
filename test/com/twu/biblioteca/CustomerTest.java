@@ -37,19 +37,4 @@ public class CustomerTest {
         //THEN
         assertEquals(bookList, bookListInBookStorage);
     }
-
-
-
-//    @Test
-//    public void shouldBeNotifiedSelectingAValidOptionWhenACutomerSelectAValidMenuOption() throws Exception {
-//        //GIVEN
-//        Customer customer = new Customer();
-//
-//        //WHEN
-//        customer.handleSelectedMenuOptionRequest(MainMenuOptionRequestType.validOption);
-//
-//        //THEN
-//        assertEquals(MainMenu.getValidOptionSelectedMessage(),"");
-//
-//    }
 }
