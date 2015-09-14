@@ -12,27 +12,38 @@ public class CustomerTest {
 
     @Test
     public void shouldGetWelcomeMessageWhenACustomerStartBibliotecaApp(){
-        //Given
+        //GIVEN
         Customer customer = new Customer();
 
-        //When
+        //WHEN
         String welcomeMessage = customer.startApp();
 
-        //Then
+        //THEN
         assertEquals(welcomeMessage,"Welcome to Biblioteca!");
     }
 
     @Test
     public void shouldSeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
-        //Given
+        //GIVEN
         Customer customer = new Customer();
         LinkedList<Book> bookListInBookStorage = BookStorage.booklist;
 
-        //When
+        //WHEN
         LinkedList<Book> bookList = customer.seeListOfAllBooks();
 
-        //Then
+        //THEN
         assertEquals(bookList, bookListInBookStorage);
     }
 
+    @Test
+    public void shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
+        //GIVEN
+        Customer customer = new Customer();
+
+        //WHEN
+        LinkedList<Book> bookLinkedList = customer.selectMenuOption(MenuOption.LISTBOOKS);
+
+        //THEN
+        assertEquals(bookLinkedList, BookStorage.booklist);
+    }
 }
