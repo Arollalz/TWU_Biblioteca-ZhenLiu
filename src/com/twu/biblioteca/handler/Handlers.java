@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.handler;
+
+import com.twu.biblioteca.request.MainMenuOptionRequestType;
 
 import java.util.HashMap;
 

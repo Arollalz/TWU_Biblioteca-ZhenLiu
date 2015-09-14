@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.customer.Customer;
+import com.twu.biblioteca.library.Book;
+import com.twu.biblioteca.library.BookStorage;
 import org.junit.Test;
 
 import java.util.LinkedList;

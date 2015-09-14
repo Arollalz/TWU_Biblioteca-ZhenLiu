@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.library.Book;
 import org.junit.Test;
 
 import java.util.Calendar;

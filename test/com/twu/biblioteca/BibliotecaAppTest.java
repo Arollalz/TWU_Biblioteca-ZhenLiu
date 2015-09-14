@@ -1,5 +1,10 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.customer.Customer;
+import com.twu.biblioteca.library.BibliotecaApp;
+import com.twu.biblioteca.library.BookStorage;
+import com.twu.biblioteca.library.MainMenu;
+import com.twu.biblioteca.request.CustomerRequest;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +16,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = new CustomerRequest(new Customer(), MainMenuOptionRequestType.listBooks);
+        CustomerRequest customerRequest = CustomerRequest.listBooks(new Customer());
 
         //WHEN
         BibliotecaApp.handleSelectedMenuOptionRequest(customerRequest);
