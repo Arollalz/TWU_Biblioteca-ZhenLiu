@@ -17,4 +17,8 @@ public class Customer {
     public LinkedList<Book> seeListOfAllBooks() {
         return BookStorage.bookList;
     }
+
+    public void checkOut(Book book) {
+        BookStorage.bookList.remove(book);
+    }
 }
