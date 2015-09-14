@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 /**
@@ -13,8 +14,8 @@ public class BookStorage {
     }
     private static void initBookList(){
         {
-            booklist.add(new Book("book1"));
-            booklist.add(new Book("book2"));
+            booklist.add(new Book("book1","author1", Calendar.getInstance()));
+            booklist.add(new Book("book2","author2",Calendar.getInstance()));
         }
     }
 }
