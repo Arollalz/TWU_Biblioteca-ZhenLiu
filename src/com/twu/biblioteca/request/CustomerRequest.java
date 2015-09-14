@@ -8,23 +8,30 @@ import com.twu.biblioteca.customer.Customer;
 public class CustomerRequest {
     private Customer customer;
 
-    private MainMenuOptionRequestType type;
+    private MainMenuRequestType type;
 
-    public CustomerRequest(Customer customer, MainMenuOptionRequestType type) {
+    public CustomerRequest(Customer customer, MainMenuRequestType type) {
         this.customer = customer;
         this.type = type;
     }
 
     public static CustomerRequest listBooks(Customer customer) {
-        return new CustomerRequest(customer, MainMenuOptionRequestType.listBooks);
+        return new CustomerRequest(customer, MainMenuRequestType.listBooks);
     }
 
     public static CustomerRequest invalidOption(Customer customer) {
-        return new CustomerRequest(customer, MainMenuOptionRequestType.validOption);
+        return new CustomerRequest(customer, MainMenuRequestType.validOption);
     }
 
-    public MainMenuOptionRequestType getType() {
+    public static CustomerRequest quit(Customer customer) {
+        return new CustomerRequest(customer, MainMenuRequestType.quit);
+    }
+
+    public static CustomerRequest showOptionList(Customer customer) {
+        return new CustomerRequest(customer, MainMenuRequestType.showOptionList);
+    }
+
+    public MainMenuRequestType getType() {
         return type;
     }
-
 }

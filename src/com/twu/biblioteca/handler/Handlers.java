@@ -1,6 +1,6 @@
 package com.twu.biblioteca.handler;
 
-import com.twu.biblioteca.request.MainMenuOptionRequestType;
+import com.twu.biblioteca.request.MainMenuRequestType;
 
 import java.util.HashMap;
 
@@ -8,12 +8,14 @@ import java.util.HashMap;
  * Created by zhenliu on 9/14/15.
  */
 public final class Handlers {
-    private static final HashMap<MainMenuOptionRequestType, RequestHandler> optionRequestHandlerMap = new HashMap<MainMenuOptionRequestType, RequestHandler>(){{
-        put(MainMenuOptionRequestType.listBooks, new ListBooksHandler());
-        put(MainMenuOptionRequestType.validOption, new InvalidOptionHandler());
+    private static final HashMap<MainMenuRequestType, RequestHandler> optionRequestHandlerMap = new HashMap<MainMenuRequestType, RequestHandler>(){{
+        put(MainMenuRequestType.listBooks, new ListBooksHandler());
+        put(MainMenuRequestType.validOption, new InvalidOptionHandler());
+        put(MainMenuRequestType.quit,new QuitOptionHandler());
+        put(MainMenuRequestType.showOptionList,new ShowOptionList());
     }};
 
-    public static RequestHandler findRequestHandler(MainMenuOptionRequestType mainMenuOptionRequestType) {
-        return optionRequestHandlerMap.get(mainMenuOptionRequestType);
+    public static RequestHandler findRequestHandler(MainMenuRequestType mainMenuRequestType) {
+        return optionRequestHandlerMap.get(mainMenuRequestType);
     }
 }

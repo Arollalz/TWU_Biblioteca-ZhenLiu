@@ -6,6 +6,7 @@ import java.util.LinkedList;
  * Created by zhenliu on 9/14/15.
  */
 public class MainMenu {
+    private static boolean status = false;
     private static LinkedList<Book> content;
     private static String validOptionSelectedMessage = "Select a valid option!";
 
@@ -20,4 +21,13 @@ public class MainMenu {
     public static String getValidOptionSelectedMessage() {
         return validOptionSelectedMessage;
     }
+
+    public static void setStatus(boolean status) {
+        MainMenu.status = status;
+    }
+
+    public static boolean getStatus() {
+        return status;
+    }
+
 }
