@@ -4,21 +4,31 @@ import com.twu.biblioteca.customer.Customer;
 import com.twu.biblioteca.library.Book;
 import com.twu.biblioteca.library.BookStorage;
 import org.hamcrest.core.IsAnything;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by zhenliu on 9/14/15.
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CustomerTest {
+    public Book book;
+    @Before
+    public void setUp() throws Exception {
+        book = BookStorage.bookList.get(0);
+    }
 
     @Test
-    public void shouldGetWelcomeMessageWhenACustomerStartBibliotecaApp(){
+    public void should01GetWelcomeMessageWhenACustomerStartBibliotecaApp(){
         //GIVEN
         Customer customer = new Customer();
 
@@ -30,7 +40,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void shouldSeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
+    public void should02SeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
         //GIVEN
         Customer customer = new Customer();
         LinkedList<Book> bookListInBookStorage = BookStorage.bookList;
@@ -43,26 +53,38 @@ public class CustomerTest {
     }
 
     @Test
-    public void shouldNotAppearInBookListWhenABookBeCheckedByACustomer() throws Exception {
+    public void should03NotAppearInBookListAndGiveAMessageWhenABookBeCheckedByACustomer() throws Exception {
         //GIVEN
         Customer customer = new Customer();
-        Book book = BookStorage.bookList.get(0);
 
         //WHEN
         //THEN
         assertEquals("Thank you! Enjoy the book.",customer.checkOut(book));
         assertFalse(BookStorage.bookList.contains(book));
-
     }
 
     @Test
-    public void shouldCheckOutUnsuccessfullyWhenABookIsNotAvailable() throws Exception {
+    public void should04CheckOutUnsuccessfullyAndGiveAMessageWhenABookIsNotAvailable() throws Exception {
         //GIVEN
         Customer customer = new Customer();
         Book book = new Book("book3","author3", Calendar.getInstance());
 
         //WHEN
         //THEN
-        assertEquals("That book is not available.",customer.checkOut(book));
+        assertEquals("That book is not available.", customer.checkOut(book));
     }
+
+
+    @Test
+    public void should05AppearInBookListWhenABookBeReturnedByACustomer() throws Exception {
+        //GIVEN
+        Customer customer = new Customer();
+
+        //WHEN
+        customer.returnBook(book);
+
+        //THEN
+        assertTrue(BookStorage.bookList.contains(book));
+    }
+
 }
