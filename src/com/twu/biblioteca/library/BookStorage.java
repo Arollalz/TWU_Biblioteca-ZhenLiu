@@ -1,6 +1,5 @@
 package com.twu.biblioteca.library;
 
-import java.util.ArrayDeque;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -15,4 +14,12 @@ public class BookStorage {
         }
     }};
     public static LinkedList<Book> lentBookList = new LinkedList<>();
+
+    public static void printAllBookList() {
+        System.out.println("BookName       AuthorName       YearPublished");
+        for (Book book: allBookList){
+            System.out.println(book.getName()+"          "+book.getAuthorName()+"        " +
+                    "     "+book.getYearPublished().get(Calendar.YEAR));
+        }
+    }
 }

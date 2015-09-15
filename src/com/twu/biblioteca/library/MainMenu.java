@@ -6,9 +6,12 @@ import java.util.LinkedList;
  * Created by zhenliu on 9/14/15.
  */
 public class MainMenu {
-    private static boolean status = false;
     private static LinkedList<Book> content;
-    private static String validOptionSelectedMessage = "Select a valid option!";
+    private static final String validOptionSelectedMessage = "Select a valid option!";
+    private static final String checkOutSuccessfullyMessage = "Thank you! Enjoy the book.";
+    private static final String checkOutFailedMessage = "That book is not available.";
+    private static final String returnBookMessage = "";
+    private static final String returnFailedMessage = "";
 
     public static void setContent(LinkedList<Book> content) {
         MainMenu.content = content;
@@ -22,12 +25,19 @@ public class MainMenu {
         return validOptionSelectedMessage;
     }
 
-    public static void setStatus(boolean status) {
-        MainMenu.status = status;
+    public static String getCheckOutSuccessfullyMessage() {
+        return checkOutSuccessfullyMessage;
     }
 
-    public static boolean getStatus() {
-        return status;
+    public static String getCheckOutFailedMessage() {
+        return checkOutFailedMessage;
     }
 
+    public static String getReturnBookMessage() {
+        return returnBookMessage;
+    }
+
+    public static String getReturnFailedMessage() {
+        return returnFailedMessage;
+    }
 }

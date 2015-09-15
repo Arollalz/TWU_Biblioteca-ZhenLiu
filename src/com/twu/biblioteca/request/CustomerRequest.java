@@ -1,37 +1,44 @@
 package com.twu.biblioteca.request;
 
-import com.twu.biblioteca.customer.Customer;
+import com.twu.biblioteca.library.Book;
 
 /**
  * Created by zhenliu on 9/14/15.
  */
 public class CustomerRequest {
-    private Customer customer;
-
     private MainMenuRequestType type;
+    private Book requestBook;
 
-    public CustomerRequest(Customer customer, MainMenuRequestType type) {
-        this.customer = customer;
+    public CustomerRequest( MainMenuRequestType type, Book book) {
         this.type = type;
+        this.requestBook = book;
     }
 
-    public static CustomerRequest listBooks(Customer customer) {
-        return new CustomerRequest(customer, MainMenuRequestType.listBooks);
+    public static CustomerRequest listBooks(Book book) {
+        return new CustomerRequest(MainMenuRequestType.listBooks,book);
     }
 
-    public static CustomerRequest invalidOption(Customer customer) {
-        return new CustomerRequest(customer, MainMenuRequestType.validOption);
+    public static CustomerRequest invalidOption(Book book) {
+        return new CustomerRequest(MainMenuRequestType.validOption, book);
     }
 
-    public static CustomerRequest quit(Customer customer) {
-        return new CustomerRequest(customer, MainMenuRequestType.quit);
+    public static CustomerRequest quit(Book book) {
+        return new CustomerRequest(MainMenuRequestType.quit, book);
     }
 
-    public static CustomerRequest showOptionList(Customer customer) {
-        return new CustomerRequest(customer, MainMenuRequestType.showOptionList);
+    public static CustomerRequest checkOut(Book book) {
+        return new CustomerRequest(MainMenuRequestType.checkOut, book);
+    }
+
+    public static CustomerRequest returnBook(Book book){
+        return new CustomerRequest(MainMenuRequestType.returnBook, book);
     }
 
     public MainMenuRequestType getType() {
         return type;
+    }
+
+    public Book getRequestBook() {
+        return requestBook;
     }
 }
