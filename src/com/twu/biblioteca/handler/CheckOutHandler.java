@@ -10,15 +10,15 @@ import com.twu.biblioteca.request.CustomerRequest;
 public class CheckOutHandler implements RequestHandler {
     @Override
     public void handle(CustomerRequest request) {
-        if (request.getRequestBook() != null) {
-            if (!BookStorage.allBookList.contains(request.getRequestBook())){
-                System.out.println("That book is not available.");
-            } else {
-                BookStorage.allBookList.remove(request.getRequestBook());
-                BookStorage.lentBookList.add(request.getRequestBook());
-                System.out.println("Thank you! Enjoy the book.");
-            }
-        }
+    if (request.getRequestBook() != null) {
+        if (!BookStorage.allBookList.contains(request.getRequestBook())){
+            System.out.println("That book is not available.");
+         }else{
+            BookStorage.allBookList.remove(request.getRequestBook());
+            BookStorage.lentBookList.add(request.getRequestBook());
+            System.out.println("Thank you! Enjoy the book.");
+         }
+    }
 
         if (request.getRequestMovie() != null) {
             if ((!MovieStorage.allMovieList.contains(request.getRequestMovie()))) {
@@ -28,6 +28,7 @@ public class CheckOutHandler implements RequestHandler {
                 MovieStorage.lentMovieList.add(request.getRequestMovie());
                 System.out.println("Thank you! Enjoy the movie.");
             }
+
 
         }
     }

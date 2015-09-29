@@ -13,7 +13,7 @@ public final class Handlers {
         put(MainMenuRequestType.validOption, new InvalidOptionHandler());
         put(MainMenuRequestType.quit,new QuitOptionHandler());
         put(MainMenuRequestType.checkOut,new CheckOutHandler());
-        put(MainMenuRequestType.returnBook,new ReturnBookHandler());
+        put(MainMenuRequestType.returnBook,new ReturnBookOrMovieHandler());
     }};
 
     public static RequestHandler findRequestHandler(MainMenuRequestType mainMenuRequestType) {

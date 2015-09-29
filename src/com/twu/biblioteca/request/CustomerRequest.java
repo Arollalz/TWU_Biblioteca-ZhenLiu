@@ -33,7 +33,7 @@ public class CustomerRequest {
         return new CustomerRequest(MainMenuRequestType.checkOut, book, movie);
     }
 
-    public static CustomerRequest returnBook(Book book, Movie movie){
+    public static CustomerRequest returnBookOrMovie(Book book, Movie movie){
         return new CustomerRequest(MainMenuRequestType.returnBook, book, movie);
     }
 

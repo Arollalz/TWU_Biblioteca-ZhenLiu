@@ -86,13 +86,13 @@ public class LibraryTest {
         //GIVEN
         CustomerRequest customerRequest0 = CustomerRequest.checkOut(book,null);
         Library.handleSelectedMenuOptionRequest(customerRequest0);
-        CustomerRequest customerRequest = CustomerRequest.returnBook(book, null);
+        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
         //WHEN and THEN
-       // assertEquals("Thank you for returning the book.", customer.returnBook(book));
+       // assertEquals("Thank you for returning the book.", customer.returnBookOrMovie(book));
         assertTrue(BookStorage.allBookList.contains(book));
     }
 
@@ -100,14 +100,14 @@ public class LibraryTest {
     public void G_shouldReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibrary() throws Exception {
         //GIVEN
         Book book = new Book("book3","author3", Calendar.getInstance());
-        CustomerRequest customerRequest = CustomerRequest.returnBook(book, null);
+        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
         //WHEN and THEN
         assertFalse(BookStorage.lentBookList.contains(book));
-       // assertEquals("That is not a valid book to return.", customer.returnBook(book));
+       // assertEquals("That is not a valid book to return.", customer.returnBookOrMovie(book));
     }
 
     @Test
