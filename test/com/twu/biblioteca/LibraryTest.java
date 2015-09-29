@@ -1,11 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.library.Book;
-import com.twu.biblioteca.library.Library;
-import com.twu.biblioteca.library.BookStorage;
-import com.twu.biblioteca.library.MainMenu;
+import com.twu.biblioteca.library.*;
 import com.twu.biblioteca.request.CustomerRequest;
-
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -56,7 +52,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void should07NotAppearInBookListAndGiveAMessageWhenABookBeCheckedByACustomer() throws Exception {
+    public void should07NotAppearInBookListAndGiveAMessageWhenABookBeCheckedSuccessfullyByACustomer() throws Exception {
         //GIVEN
         CustomerRequest customerRequest = CustomerRequest.checkOut(book);
 
@@ -109,4 +105,16 @@ public class LibraryTest {
        // assertEquals("That is not a valid book to return.", customer.returnBook(book));
     }
 
+    @Test
+    public void shouldCheckOutSuccessfullyWhenACustomerCheckOutAnAvailableMovie() throws Exception {
+        Movie movie = new Movie("Movie1",1990,"Director1",5);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(movie);
+
+        Library.handleSelectedMenuOptionRequest(customerRequest);
+
+        //THEN
+        // assertEquals("Thank you! Enjoy the book.", MainMenu.getContent());
+        assertFalse(MovieStorage.allMovieList.contains(movie));
+        assertTrue(MovieStorage.lentMovieList.contains(movie));
+    }
 }
