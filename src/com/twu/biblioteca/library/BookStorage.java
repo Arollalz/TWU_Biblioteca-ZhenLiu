@@ -1,6 +1,9 @@
 package com.twu.biblioteca.library;
 
+import com.twu.biblioteca.user.User;
+
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -13,7 +16,7 @@ public class BookStorage {
             add(new Book("book2", "author2", Calendar.getInstance()));
         }
     }};
-    public static LinkedList<Book> lentBookList = new LinkedList<>();
+    public static HashMap<Book,User> bookUserHashMap = new HashMap<>();
 
     public static void printAllBookList() {
         System.out.println("BookName       AuthorName       YearPublished");

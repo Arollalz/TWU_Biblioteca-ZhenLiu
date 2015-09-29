@@ -1,6 +1,7 @@
 package com.twu.biblioteca.library;
 
 import com.twu.biblioteca.request.CustomerRequest;
+import com.twu.biblioteca.user.User;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -20,17 +21,19 @@ import static org.junit.Assert.assertFalse;
 public class LibraryTest {
     public Book book ;
     public Movie movie ;
+    public User user;
 
     @Before
     public void setUp() throws Exception {
         book = BookStorage.allBookList.get(0);
         movie = MovieStorage.allMovieList.get(0);
+        user = new User("test","test","test");
     }
 
     @Test
     public void A_shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.listBooks(book, null);
+        CustomerRequest customerRequest = CustomerRequest.listBooks(user,book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -57,7 +60,7 @@ public class LibraryTest {
     @Test
     public void D_shouldNotAppearInBookListAndGiveAMessageWhenABookBeCheckedSuccessfullyByACustomer() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.checkOut(book, null);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(user,book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -65,7 +68,7 @@ public class LibraryTest {
         //THEN
        // assertEquals("Thank you! Enjoy the book.", MainMenu.getContent());
         assertFalse(BookStorage.allBookList.contains(book));
-        assertTrue(BookStorage.lentBookList.contains(book));
+        assertTrue(BookStorage.bookUserHashMap.containsKey(book));
     }
 
     @Test
@@ -74,7 +77,7 @@ public class LibraryTest {
         Book book = new Book("book3","author3", Calendar.getInstance());
 
         //WHEN
-        CustomerRequest customerRequest = CustomerRequest.checkOut(book, null);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(user,book, null);
         Library.handleSelectedMenuOptionRequest(customerRequest);
         //THEN
         assertFalse(BookStorage.allBookList.contains(book));
@@ -84,9 +87,9 @@ public class LibraryTest {
     @Test
     public void F_shouldAppearInBookListAndGiveAMessageWhenABookBeReturnedByACustomer() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest0 = CustomerRequest.checkOut(book,null);
+        CustomerRequest customerRequest0 = CustomerRequest.checkOut(user,book,null);
         Library.handleSelectedMenuOptionRequest(customerRequest0);
-        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(book, null);
+        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(user,book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -100,23 +103,23 @@ public class LibraryTest {
     public void G_shouldReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibrary() throws Exception {
         //GIVEN
         Book book = new Book("book3","author3", Calendar.getInstance());
-        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(book, null);
+        CustomerRequest customerRequest = CustomerRequest.returnBookOrMovie(user,book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
         //WHEN and THEN
-        assertFalse(BookStorage.lentBookList.contains(book));
+        assertFalse(BookStorage.bookUserHashMap.containsKey(book));
        // assertEquals("That is not a valid book to return.", customer.returnBookOrMovie(book));
     }
 
     @Test
     public void H_should11CheckOutSuccessfullyWhenACustomerCheckOutAnAvailableMovie() throws Exception {
-        CustomerRequest customerRequest = CustomerRequest.checkOut(null,movie);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(user,null,movie);
 
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
         assertFalse(MovieStorage.allMovieList.contains(movie));
-        assertTrue(MovieStorage.lentMovieList.contains(movie));
+        assertTrue(MovieStorage.movieUserHashMap.containsKey(movie));
     }
 }

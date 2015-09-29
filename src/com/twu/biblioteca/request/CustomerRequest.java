@@ -2,39 +2,42 @@ package com.twu.biblioteca.request;
 
 import com.twu.biblioteca.library.Book;
 import com.twu.biblioteca.library.Movie;
+import com.twu.biblioteca.user.User;
 
 /**
  * Created by zhenliu on 9/14/15.
  */
 public class CustomerRequest {
+    private User user;
     private MainMenuRequestType type;
     private Book requestBook;
     private Movie movie;
 
-    public CustomerRequest( MainMenuRequestType type, Book book, Movie movie) {
+    public CustomerRequest( User user, MainMenuRequestType type, Book book, Movie movie) {
+        this.user = user;
         this.type = type;
         this.requestBook = book;
         this.movie = movie;
     }
 
-    public static CustomerRequest listBooks(Book book, Movie movie) {
-        return new CustomerRequest(MainMenuRequestType.listBooks,book, movie);
+    public static CustomerRequest listBooks(User user,Book book, Movie movie) {
+        return new CustomerRequest(user,MainMenuRequestType.listBooks,book, movie);
     }
 
-    public static CustomerRequest invalidOption(Book book, Movie movie) {
-        return new CustomerRequest(MainMenuRequestType.validOption, book, movie);
+    public static CustomerRequest invalidOption(User user,Book book, Movie movie) {
+        return new CustomerRequest(user, MainMenuRequestType.validOption, book, movie);
     }
 
-    public static CustomerRequest quit(Book book, Movie movie) {
-        return new CustomerRequest(MainMenuRequestType.quit, book, movie);
+    public static CustomerRequest quit(User user, Book book, Movie movie) {
+        return new CustomerRequest(user, MainMenuRequestType.quit, book, movie);
     }
 
-    public static CustomerRequest checkOut(Book book, Movie movie) {
-        return new CustomerRequest(MainMenuRequestType.checkOut, book, movie);
+    public static CustomerRequest checkOut(User user, Book book, Movie movie) {
+        return new CustomerRequest(user,MainMenuRequestType.checkOut, book, movie);
     }
 
-    public static CustomerRequest returnBookOrMovie(Book book, Movie movie){
-        return new CustomerRequest(MainMenuRequestType.returnBook, book, movie);
+    public static CustomerRequest returnBookOrMovie(User user,Book book, Movie movie){
+        return new CustomerRequest(user,MainMenuRequestType.returnBook, book, movie);
     }
 
     public MainMenuRequestType getType() {
@@ -47,5 +50,9 @@ public class CustomerRequest {
 
     public Movie getRequestMovie() {
         return movie;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

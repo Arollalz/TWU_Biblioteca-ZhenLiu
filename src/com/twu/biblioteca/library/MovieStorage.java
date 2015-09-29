@@ -1,5 +1,8 @@
 package com.twu.biblioteca.library;
 
+import com.twu.biblioteca.user.User;
+
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -12,7 +15,7 @@ public class MovieStorage {
             add(new Movie("movie2", 2015,"director2",5));
         }
     }};
-    public static LinkedList<Movie> lentMovieList = new LinkedList<>();
+    public static HashMap<Movie,User> movieUserHashMap = new HashMap<>();
 
     public static void printAllMovieList() {
         System.out.println("MovieName       Year             Director        Rate ");

@@ -12,9 +12,9 @@ public class ReturnBookOrMovieHandler implements RequestHandler {
     public void handle(CustomerRequest request) {
         if (request.getRequestBook() != null) {
             if (!BookStorage.allBookList.contains(request.getRequestBook())
-                    && BookStorage.lentBookList.contains(request.getRequestBook())){
+                    && BookStorage.bookUserHashMap.containsKey(request.getRequestBook())){
                 BookStorage.allBookList.add(request.getRequestBook());
-                BookStorage.lentBookList.remove(request.getRequestBook());
+                BookStorage.bookUserHashMap.remove(request.getRequestBook());
                 System.out.println("Thank you for returning the book.");
             }else{
                 System.out.println("That is not a valid book to return.");
@@ -23,9 +23,9 @@ public class ReturnBookOrMovieHandler implements RequestHandler {
 
         if (request.getRequestMovie() != null) {
             if (!MovieStorage.allMovieList.contains(request.getRequestMovie())
-                    && MovieStorage.lentMovieList.contains(request.getRequestMovie())){
+                    && MovieStorage.movieUserHashMap.containsKey(request.getRequestMovie())){
                 MovieStorage.allMovieList.add(request.getRequestMovie());
-                MovieStorage.lentMovieList.remove(request.getRequestMovie());
+                MovieStorage.movieUserHashMap.remove(request.getRequestMovie());
                 System.out.println("Thank you for returning the movie.");
             }else{
                 System.out.println("That is not a valid movie to return.");
