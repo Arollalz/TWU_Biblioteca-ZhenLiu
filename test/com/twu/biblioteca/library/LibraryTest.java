@@ -1,6 +1,5 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.library;
 
-import com.twu.biblioteca.library.*;
 import com.twu.biblioteca.request.CustomerRequest;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -98,7 +97,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void G_shouldReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibray() throws Exception {
+    public void G_shouldReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibrary() throws Exception {
         //GIVEN
         Book book = new Book("book3","author3", Calendar.getInstance());
         CustomerRequest customerRequest = CustomerRequest.returnBook(book, null);
