@@ -14,8 +14,8 @@ public class BibliotecaApp {
         System.out.println(Library.showWelcomeMessage());
 
         System.out.println("list of all books:");
-
         BookStorage.printAllBookList();
+
         String answer1, answer2;
         CustomerRequest request;
         Book book;

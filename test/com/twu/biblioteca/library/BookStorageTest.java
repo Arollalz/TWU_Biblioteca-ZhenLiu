@@ -1,9 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.library;
 
-import com.twu.biblioteca.library.BookStorage;
 import org.junit.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 /**
