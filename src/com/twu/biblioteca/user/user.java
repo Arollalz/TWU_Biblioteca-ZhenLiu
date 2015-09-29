@@ -15,7 +15,7 @@ public class User {
     }
 
     public void showUserInformation(){
-        System.out.println("Name:"+name+"\n"+"Address"+address+"\n"+"Phone Number:"+phoneNumber);
+        System.out.println("Name:"+name+"\n"+"Address:"+address+"\n"+"Phone Number:"+phoneNumber);
     }
 
     public String getName() {

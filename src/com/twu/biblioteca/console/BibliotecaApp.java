@@ -2,6 +2,7 @@ package com.twu.biblioteca.console;
 
 import com.twu.biblioteca.library.*;
 import com.twu.biblioteca.request.CustomerRequest;
+import com.twu.biblioteca.user.User;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -11,21 +12,23 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         System.out.println(Library.showWelcomeMessage());
         LoginConsole.askUserForLogining();
-
+        System.out.println("================BOOKS AND MOVIES===========================");
         System.out.println("Books:");
         BookStorage.printAllBookList();
 
         System.out.println("Movies:");
         MovieStorage.printAllMovieList();
-
+        System.out.println("===========================================================");
         String answer1, answer2;
         CustomerRequest request;
         Book book;
         Movie movie;
         Scanner scanner= new Scanner(System.in);
         do {
-        System.out.println("Enter 1 to ListBooks & Movies, 2 CheckOutBook , 3 CheckOutMovie, 4 ReturnBook, 5 ReturnMovie, 6 Quit: ");
-        answer1 = scanner.next();
+            System.out.println("-------------------------");
+            System.out.println("Enter:\n1 -> ListBooks & Movies\n2 -> CheckOutBook\n3 -> CheckOutMovie\n4 -> ReturnBook\n5 -> ReturnMovie\n6 -> showUserInformation\n7 -> Quit ");
+            System.out.println("-------------------------");
+            answer1 = scanner.next();
             switch (answer1) {
                 case "1":
                     request = CustomerRequest.listBooks(null,null);
@@ -60,6 +63,10 @@ public class BibliotecaApp {
                     Library.handleSelectedMenuOptionRequest(request);
                     continue;
                 case "6":
+                    User user = UserDB.userHashMap.get(LoginConsole.getUserName());
+                    user.showUserInformation();
+                    continue;
+                case "7":
                     request = CustomerRequest.quit(null, null);
                     Library.handleSelectedMenuOptionRequest(request);
                     break;
@@ -68,7 +75,7 @@ public class BibliotecaApp {
                     Library.handleSelectedMenuOptionRequest(request);
             }
 
-        }while(!answer1.equals("6"));
+        }while(!answer1.equals("7"));
 
     }
 
