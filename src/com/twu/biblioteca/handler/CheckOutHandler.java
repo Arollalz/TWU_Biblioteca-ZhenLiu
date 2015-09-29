@@ -10,7 +10,6 @@ import com.twu.biblioteca.request.CustomerRequest;
 public class CheckOutHandler implements RequestHandler {
     @Override
     public void handle(CustomerRequest request) {
-
         if (request.getRequestBook() != null) {
             if (!BookStorage.allBookList.contains(request.getRequestBook())){
                 System.out.println("That book is not available.");

@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public final class Handlers {
     private static  HashMap<MainMenuRequestType, RequestHandler> optionRequestHandlerMap = new HashMap<MainMenuRequestType, RequestHandler>(){{
-        put(MainMenuRequestType.listBooks, new ListBooksHandler());
+        put(MainMenuRequestType.listBooks, new ListBooksAndMoviesHandler());
         put(MainMenuRequestType.validOption, new InvalidOptionHandler());
         put(MainMenuRequestType.quit,new QuitOptionHandler());
         put(MainMenuRequestType.checkOut,new CheckOutHandler());

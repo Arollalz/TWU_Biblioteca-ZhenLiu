@@ -14,4 +14,11 @@ public class MovieStorage {
     }};
     public static LinkedList<Movie> lentMovieList = new LinkedList<>();
 
+    public static void printAllMovieList() {
+        System.out.println("MovieName       Year             Director        Rate ");
+        for (Movie movie: allMovieList){
+            System.out.println(movie.getName() + "          " + movie.getYear() + "        " +
+                    "     " + movie.getDirector() + "         "+movie.getRate());
+        }
+    }
 }
