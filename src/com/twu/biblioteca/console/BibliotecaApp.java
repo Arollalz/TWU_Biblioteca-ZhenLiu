@@ -25,29 +25,29 @@ public class BibliotecaApp {
         answer1 = scanner.next();
             switch (answer1) {
                 case "1":
-                    request = CustomerRequest.listBooks(null);
+                    request = CustomerRequest.listBooks(null,null);
                     Library.handleSelectedMenuOptionRequest(request);
                     continue;
                 case "2":
                     System.out.print("Enter the book name you want to checkout:");
                     answer2 = scanner.next();
                     book = findBookInList(answer2, BookStorage.allBookList);
-                    request = CustomerRequest.checkOut(book);
+                    request = CustomerRequest.checkOut(book,null);
                     Library.handleSelectedMenuOptionRequest(request);
                     continue;
                 case "3":
                     System.out.print("Enter the book name you want to return:");
                     answer2 = scanner.next();
                     book = findBookInList(answer2, BookStorage.lentBookList);
-                    request = CustomerRequest.returnBook(book);
+                    request = CustomerRequest.returnBook(book, null);
                     Library.handleSelectedMenuOptionRequest(request);
                     continue;
                 case "4":
-                    request = CustomerRequest.quit(null);
+                    request = CustomerRequest.quit(null, null);
                     Library.handleSelectedMenuOptionRequest(request);
                     break;
                 default:
-                    request = CustomerRequest.invalidOption(null);
+                    request = CustomerRequest.invalidOption(null ,null);
                     Library.handleSelectedMenuOptionRequest(request);
             }
 

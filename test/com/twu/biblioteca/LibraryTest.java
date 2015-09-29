@@ -10,24 +10,28 @@ import org.junit.runners.MethodSorters;
 import java.util.Calendar;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by zhenliu on 9/14/15.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LibraryTest {
-    public Book book;
+    public Book book ;
+    public Movie movie ;
 
     @Before
     public void setUp() throws Exception {
         book = BookStorage.allBookList.get(0);
+        movie = MovieStorage.allMovieList.get(0);
     }
 
     @Test
-    public void should02ListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
+    public void A_shouldListBooksWhenACustomerSelectListBooksMenuOption() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.listBooks(book);
+        CustomerRequest customerRequest = CustomerRequest.listBooks(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -37,13 +41,13 @@ public class LibraryTest {
     }
 
     @Test
-    public void should05GetWelcomeMessageWhenACustomerStartBibliotecaApp(){
+    public void B_shouldGetWelcomeMessageWhenACustomerStartBibliotecaApp(){
 
         assertEquals(Library.showWelcomeMessage(),"Welcome to Biblioteca!");
     }
 
     @Test
-    public void should06SeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
+    public void C_shouldSeeAListOfAllLibraryBooksWhenACustomerWantTo() throws Exception {
         //GIVEN
         LinkedList<Book> bookListInBookStorage = BookStorage.allBookList;
 
@@ -52,9 +56,9 @@ public class LibraryTest {
     }
 
     @Test
-    public void should07NotAppearInBookListAndGiveAMessageWhenABookBeCheckedSuccessfullyByACustomer() throws Exception {
+    public void D_shouldNotAppearInBookListAndGiveAMessageWhenABookBeCheckedSuccessfullyByACustomer() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.checkOut(book);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -66,12 +70,12 @@ public class LibraryTest {
     }
 
     @Test
-    public void should08CheckOutUnsuccessfullyAndGiveAMessageWhenABookIsNotAvailable() throws Exception {
+    public void E_shouldCheckOutUnsuccessfullyAndGiveAMessageWhenABookIsNotAvailable() throws Exception {
         //GIVEN
         Book book = new Book("book3","author3", Calendar.getInstance());
 
         //WHEN
-        CustomerRequest customerRequest = CustomerRequest.checkOut(book);
+        CustomerRequest customerRequest = CustomerRequest.checkOut(book, null);
         Library.handleSelectedMenuOptionRequest(customerRequest);
         //THEN
         assertFalse(BookStorage.allBookList.contains(book));
@@ -79,9 +83,11 @@ public class LibraryTest {
     }
 
     @Test
-    public void should09AppearInBookListAndGiveAMessageWhenABookBeReturnedByACustomer() throws Exception {
+    public void F_shouldAppearInBookListAndGiveAMessageWhenABookBeReturnedByACustomer() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.returnBook(book);
+        CustomerRequest customerRequest0 = CustomerRequest.checkOut(book,null);
+        Library.handleSelectedMenuOptionRequest(customerRequest0);
+        CustomerRequest customerRequest = CustomerRequest.returnBook(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
@@ -92,28 +98,25 @@ public class LibraryTest {
     }
 
     @Test
-    public void should10ReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibray() throws Exception {
+    public void G_shouldReturnBookUnsuccessfullyAndGiveAMessageWhenABookNotBelongToThisLibray() throws Exception {
         //GIVEN
-        CustomerRequest customerRequest = CustomerRequest.checkOut(book);
         Book book = new Book("book3","author3", Calendar.getInstance());
+        CustomerRequest customerRequest = CustomerRequest.returnBook(book, null);
 
         //WHEN
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
         //WHEN and THEN
-        assertFalse(BookStorage.allBookList.contains(book));
+        assertFalse(BookStorage.lentBookList.contains(book));
        // assertEquals("That is not a valid book to return.", customer.returnBook(book));
     }
 
     @Test
-    public void shouldCheckOutSuccessfullyWhenACustomerCheckOutAnAvailableMovie() throws Exception {
-        Movie movie = new Movie("Movie1",1990,"Director1",5);
-        CustomerRequest customerRequest = CustomerRequest.checkOut(movie);
+    public void H_should11CheckOutSuccessfullyWhenACustomerCheckOutAnAvailableMovie() throws Exception {
+        CustomerRequest customerRequest = CustomerRequest.checkOut(null,movie);
 
         Library.handleSelectedMenuOptionRequest(customerRequest);
 
-        //THEN
-        // assertEquals("Thank you! Enjoy the book.", MainMenu.getContent());
         assertFalse(MovieStorage.allMovieList.contains(movie));
         assertTrue(MovieStorage.lentMovieList.contains(movie));
     }
